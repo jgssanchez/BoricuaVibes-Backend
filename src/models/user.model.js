@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const jwt = require("jsonwebtoken");
 
 const userSchema = new Schema({
     
@@ -10,3 +11,8 @@ const userSchema = new Schema({
     verified: { type: Boolean, default: false },
 })
 
+userSchema.methods.getJwtToken = function () {
+    return jwt.sign({ id: this._id }, process.env.JWT_SECRET_KEY, {
+        expiresIn: process.env.TOKEN_EXPIRES_IN,
+    });
+};

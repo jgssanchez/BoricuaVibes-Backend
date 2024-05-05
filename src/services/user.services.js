@@ -6,4 +6,12 @@ const createUserService = async (user) => {
     await newUser.save();
     return newUser;
 }
-module.exports = { createUserService }
+
+const getByEmailService = async (email) => {
+    return User.findOne({ email });
+};
+
+const getUserService = async(id) => {
+    return User.findById(id);
+}
+module.exports = { createUserService, getUserService, getByEmailService }
