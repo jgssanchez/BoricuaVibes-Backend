@@ -9,6 +9,7 @@ const app = express();
 const port = serverConfig.port || 4000;
 
 const whitelist = ['http://localhost:5173'];
+
 app.use(cors({
     origin: function (origin, callback) {
       if (!origin || whitelist.includes(origin)) {
