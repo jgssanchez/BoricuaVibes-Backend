@@ -3,8 +3,8 @@ const jwt = require("jsonwebtoken");
 
 const userSchema = new Schema({
     
-    name: { type: String, required: [true, 'El nopmbre es obligatorio'] },
-    lastName: { type: String, required: [true, 'El apellido es obligatorio'] },
+    firstname: { type: String, required: [true, 'El nombre es obligatorio'] },
+    lastname: { type: String, required: [true, 'El apellido es obligatorio'] },
     email: { type: String, required: [true, 'El email es obligatorio'], unique: true },
     password: { type: String, required: [true, 'La contraseña es obligatoria'] },
     role: { type: String, enum: ['admin', 'user'] , default: 'user' },
@@ -16,3 +16,5 @@ userSchema.methods.getJwtToken = function () {
         expiresIn: process.env.TOKEN_EXPIRES_IN,
     });
 };
+
+module.exports= model("User", userSchema)

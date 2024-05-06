@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 
 const hashingPassword = async (user) => {
   const salt = bcrypt.genSaltSync(10);
-  user.password = bcrypt.hashSync(password, salt);
+  user.password = bcrypt.hashSync(user.password, salt);
   return user;
 };
 
