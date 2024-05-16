@@ -12,7 +12,7 @@ const userSchema = new Schema({
 })
 
 userSchema.methods.getJwtToken = function () {
-    return jwt.sign({ id: this._id }, process.env.JWT_SECRET_KEY, {
+    return jwt.sign({ id: this._id }, process.env.SECRET_KEY, {
         expiresIn: process.env.TOKEN_EXPIRES_IN,
     });
 };
