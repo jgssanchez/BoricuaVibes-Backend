@@ -4,6 +4,8 @@ const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const { serverConfig } = require("../config/config");
 require("../dbConnection/dbConnection");
+const userRoutes = require("../routes/user.routes");
+const productRoutes = require("../routes/product.routes");
 
 const app = express();
 const port = serverConfig.port || 4000;
@@ -19,18 +21,15 @@ app.use(cors({
       }
     },
     credentials: true
-  }));
+}));
 
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-const userRoutes = require("../routes/user.routes");
-
 app.use("/api/users", userRoutes);
-
-
+app.use("/api/products", productRoutes);
 
 app.listen(port, () => {
   console.log(`Servidor en el puerto ${port}`);

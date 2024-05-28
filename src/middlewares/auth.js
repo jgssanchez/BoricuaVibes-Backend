@@ -16,9 +16,9 @@ const isAuthenticated = async(req,res,next) => {
     next();
 };
 
-const isAdmin = (...roles) => {
+const isAdmin = (...role) => {
     return (req,res,next) => {
-        if(!roles.includes(req.user.role)){
+        if(!role.includes(req.user.role)){
             return res.status(501).json({message:"No tienes permiso para acceder"});
         };
         next();

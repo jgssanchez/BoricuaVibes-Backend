@@ -1,53 +1,19 @@
-const express = require("express");
+
+const express = require('express');
 const router = express.Router();
-const { isAuthenticated, isAdmin } = require("../middlewares/auth");
-const Product = require("../models/product.model");
+const {
+  createProduct,
+  getAllProducts,
+  getProductById,
+  updateProduct,
+  deleteProduct,
+} = require('../controllers/product.controller'); // Importa los controladores de productos
+const { isAuthenticated, isAdmin } = require('../middlewares/auth'); // Importa tus middlewares de autenticación
 
-router.get("/products", isAuthenticated, async (req, res) => {
-  try {
-    const products = await Product.find();
-    res.status(200).json(products);
-  } catch (error) {
-    res.status(500).json({ message: "Error al obtener los productos", error });
-  }
-});
-
-router.post(
-  "/products",
-  isAuthenticated,
-  isAdmin("admin"),
-  async (req, res) => {
-    try {
-    } catch (error) {
-      res.status(500).json({ message: "Error al crear el producto", error });
-    }
-  }
-);
-
-router.put(
-  "/products/:id",
-  isAuthenticated,
-  isAdmin("admin"),
-  async (req, res) => {
-    try {
-    } catch (error) {
-      res
-        .status(500)
-        .json({ message: "Error al actualizar el producto", error });
-    }
-  }
-);
-
-router.delete(
-  "/products/:id",
-  isAuthenticated,
-  isAdmin("admin"),
-  async (req, res) => {
-    try {
-    } catch (error) {
-      res.status(500).json({ message: "Error al eliminar el producto", error });
-    }
-  }
-);
+router.get('/', isAuthenticated, getAllProducts);
+router.get('/:id', isAuthenticated, getProductById);
+router.post('/create', isAuthenticated, createProduct);
+router.put('/update/:id', isAuthenticated, updateProduct);
+router.delete('/delete/:id', isAuthenticated, deleteProduct);
 
 module.exports = router;
