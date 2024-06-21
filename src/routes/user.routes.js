@@ -8,6 +8,9 @@ const {
   editUser,
   deleteUser,
   getUserCart,
+  manageCartProduct,
+  updateProductInCart,
+  clearUserCart,
 } = require("../controllers/user.controller");
 const { isAuthenticated, isAdmin } = require("../middlewares/auth");
 const route = Router();
@@ -27,5 +30,11 @@ route.put("/edit/:id", isAuthenticated, isAdmin("admin"), editUser);
 route.delete("/delete/:id", isAuthenticated, isAdmin("admin"), deleteUser);
 
 route.get("/user-cart", isAuthenticated, getUserCart);
+
+route.post("/manage-cart-product", isAuthenticated, manageCartProduct);
+
+route.put("/update-product-in-cart", isAuthenticated, updateProductInCart);
+
+route.get("/clear-cart", isAuthenticated, clearUserCart);
 
 module.exports = route;

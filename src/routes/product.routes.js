@@ -1,19 +1,16 @@
-
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const {
-  createProduct,
-  getAllProducts,
-  getProductById,
-  updateProduct,
-  deleteProduct,
-} = require('../controllers/product.controller'); // Importa los controladores de productos
-const { isAuthenticated, isAdmin } = require('../middlewares/auth'); // Importa tus middlewares de autenticación
+const { createProduct, getAllProducts, getProductById, updateProduct, deleteProduct } = require("../controllers/product.controller");
+const { isAuthenticated, isAdmin } = require("../middlewares/auth");
 
-router.get('/', isAuthenticated, getAllProducts);
-router.get('/:id', isAuthenticated, getProductById);
-router.post('/create', isAuthenticated, createProduct);
-router.put('/update/:id', isAuthenticated, updateProduct);
-router.delete('/delete/:id', isAuthenticated, deleteProduct);
+router.post("/create", isAuthenticated, isAdmin("admin"), createProduct);
+
+router.get("/", getAllProducts);
+
+router.get("/:id", getProductById);
+
+router.put("/edit/:id", isAuthenticated, isAdmin("admin"), updateProduct);
+
+router.delete("/delete/:id", isAuthenticated, isAdmin("admin"), deleteProduct);
 
 module.exports = router;

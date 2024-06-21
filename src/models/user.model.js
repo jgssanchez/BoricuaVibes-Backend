@@ -21,9 +21,15 @@ const userSchema = new Schema({
   },
   cart: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "Product",
+      product: { type: Schema.Types.ObjectId, ref: "Product" },
+      quantity: { type: Number, default: 1 },
     },
+  ],
+  orders: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Order'
+    }
   ],
   role: {
     type: String,
