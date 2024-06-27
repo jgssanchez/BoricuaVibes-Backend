@@ -55,7 +55,7 @@ Asegúrate de tener las siguientes dependencias de desarrollo instaladas en tu s
 
 ## 🔧 Instalación
 
-Clona el repositorio de Boricua Vibes Frontend:
+Clona el repositorio de Boricua Vibes Backend:
 ```bash
 git clone https://github.com/jgssanchez/BoricuaVibes-Backend.git
 
