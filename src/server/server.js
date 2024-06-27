@@ -8,7 +8,7 @@ require("../dbConnection/dbConnection");
 const app = express();
 const port = serverConfig.port || 4000;
 
-const whitelist = ['https://boricuavibes.netlify.app/'];
+const whitelist = ['https://boricuavibes.netlify.app'];
 
 app.use(cors({
     origin: function (origin, callback) {
